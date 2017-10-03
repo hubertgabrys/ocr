@@ -1,0 +1,84 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>
+HELP
+</h1>
+<h2>
+<p>O programie</p>
+</h2>
+<p>Po otwarciu programu należy wczytać obraz wejściowy. Program automatycznie dokonuje konwersji obrazu do odcieni szarości z wyrównaniem histogramu.</p>
+<p>Po wczytaniu obrazu nie wszystkie operacje są możliwe do wykonania. Na każdym etapie można obraz obracać i filtrować. Wybór metody ekstrakcji cech, klasyfikacji danych oraz metryki jest możliwy dopiero po dokonaniu binaryzacji obrazu.</p>
+<p>Aby dokonać binaryzacji lub filtracji należy zaznaczyć odpowiednią pozycję w "Ustawieniach", a następnie kliknąć na odpowiednią zakładkę.</p>
+<p>Po każdej operacji obraz jest wyświetlany w nowym oknie tak aby można było porównać efekt z obrazem przed dokonanymi zmianami.</p>
+<p>Efekt OCR wyświetlany jest w nowym oknie. Poza tym rozpoznany tekst jest zapisywany do pliku ‘data/OCR/outputText.txt’.</p>
+
+<h2>
+Obrót
+</h2>
+<p>Obraz można obracać o dowolny kąt. Kąty należy podawać w stopniach (nie muszą być wartościami całkowitymi). Dla dodatnich wartości kątów obrót dokonywany jest przeciwnie do ruchu wskazówek zegara.</p>
+
+<h2>
+Filtry
+</h2>
+<h3>
+Filtr medianowy
+</h3>
+<p>Pozwala usunąć pojedyncze piksele będące szumem. Zaimplemetnowana jest maska 3x3 i użytkownik nie ma wpływu na jej wielkość.</p>
+<h3>
+Erozja
+</h3>
+<p>Niekiedy pozwala rozdzielić złączone znaki. Może jednak również spowodować rozdzielenie pojedynczego znaku na dwoje.</p>
+<h3>
+Dylatacja
+</h3>
+<p>Operacja przeciwna do dylatacji. Pozwala złączyć rozdzielone znaki.</p>
+
+
+<h2>
+Binaryzacja
+</h2>
+<h3>
+Binaryzacja globalna
+</h3>
+<p>Progowanie globalne polega na dokonaniu binaryzacji na podstawie jednej wartości dla wszystkich pikseli na obrazie. Domyślną i zalecaną wartością jest ta obliczona metodą Otsu. Użytkownik może podać dowolną wartość. Otrzymuje on również informację o wartości średniej i medianie.</p>
+<h3>
+Binaryzacja lokalna
+</h3>
+<p>Binaryzacja lokalna polega na progowaniu na podstawie bezpośredniego otoczenia piksela. Użytkownik ma wpływ na wielkość otoczenia piksela oraz na kryterium binaryzacji (średnia lub mediana). Wielkość otoczenia podaje się jako jego promień. Oznacza to, że promień równy 2 utworzy otoczenie o wymiarach 5x5.</p>
+<h3>
+Binaryzacja mieszana
+</h3>
+<p>Progowanie mieszane przebiega podobnie jak progowanie lokalne, z tym że jeśli średnia lub mediana lokalna dla danego piksela odbiega o więcej niż ustalony próg od wartości globalnej to piksel progowany jest wartością globalną lub wartością równą wartość globalna ± odchylenie.</p>
+
+<h2>
+Szkieletyzacja
+</h2>
+<p>Szkieletyzacja jest dokonywana algorytmem KMM. Szkieletyzacja poprzedza każdy algorytm użyty do ekstrakcji cech.</p>
+
+<h2>
+Ekstrakcja cech charakterystycznych
+</h2>
+<h3>
+Przez liczbę sąsiadów i punkty skrajne.
+</h3>
+<p>Cechami charakterystycznymi są współrzędne punktów leżących na obrzeżach obrazka oraz punkty, które mają mniej lub więcej niż 2 sąsiadów.</p>
+<h3>
+Przez przekątne
+</h3>
+<p>Znak przecina się kilkoma prostymi. Współrzędne puntów przecinające się z tymi prostymi są cechami charakterystycznymi.</p>
+<h3>
+Przez podział na prostokąty
+</h3>
+<p>Znak jest dzielony na dziewięć kwadratów. Następnie zlicza się liczbę czarnych pikseli w każdym kwadracie. Wektor przechowujący informację o liczbie czarnych pikseli w danym kwadracie stanowi wektor cech charakterystycznych znaku.</p>
+
+<h2>
+Klasyfikacja danych
+</h2>
+<p>W programie zastosowano tylko klasyfikację najbliższego bądź najbliższych sąsiadów. Wektory cech są porównywane z bazą danych. Dla każdego porównania wystawiana jest metryka będąca liczbą.</p>
+<p>Zaimplementowano klasyfikację 1NN i 3NN. Klasyfikacja 1NN znajduje metrykę o najmniejszej wartości i ją traktuje jako prawidłowe rozpoznanie. Klasyfikacja 3NN znajduje 3 metryki o najmniejszej wartości i wybiera z nich tę, która powtarza się najczęściej.</p>
+
+</body>
+</html>
